@@ -27,6 +27,7 @@ public class InstructorRepositoryTest {
     }
 
     @Test
+    @Transactional
    public void  createInstructorTest(){
         Instructor instructor = new Instructor();
         instructor.setFirstName("Ben");
