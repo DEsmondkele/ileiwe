@@ -10,15 +10,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.time.Year;
 
 @SpringBootTest
 @Slf4j
 class StudentRepositoryTest {
 
 @Autowired
-StudentRepository studentRepositoryImpl;
+StudentRepository studentRepository;
 
 @BeforeEach
     void setUp(){
@@ -26,6 +26,7 @@ StudentRepository studentRepositoryImpl;
 }
 
 @Test
+@Transactional
     public  void createStudentTest(){
     Student student = new Student();
     student.setFirstName("Ade");
@@ -33,11 +34,11 @@ StudentRepository studentRepositoryImpl;
     student.setGender(Gender.MALE);
     student.setDob(LocalDateTime.now());
     student.setDob(LocalDateTime.now().minusYears(20));
-    student.setId(1001L);
+    student.setId(student.getId());
     AssertionsForClassTypes.assertThat(student).isNotNull();
     AssertionsForClassTypes.assertThat(student.getId()).isNotNull();
     log.info("student before saving->{}",student);
-    studentRepositoryImpl.save(student);
+    studentRepository.save(student);
     AssertionsForClassTypes.assertThat(student.getId()).isNotNull();
     log.info("student after saving->{}",student);
 
