@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Builder()
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Instructor {

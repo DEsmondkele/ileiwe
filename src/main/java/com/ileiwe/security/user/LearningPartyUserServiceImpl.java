@@ -25,9 +25,7 @@ public class LearningPartyUserServiceImpl implements UserDetailsService {
 
     private  List <SimpleGrantedAuthority> getAuthorities(List<Authority>authorities){
         return  authorities.stream().map(authority ->
-        {return new SimpleGrantedAuthority(authority.getAuthority().name());
-
-           }).collect(Collectors.toList());
+                new SimpleGrantedAuthority(authority.getAuthority().name())).collect(Collectors.toList());
     }
 
 
